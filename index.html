@@ -1,0 +1,653 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arthur | Desenvolvedor Python</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg: #0b1120;
+    --card: #111c30;
+    --text: #e2e8f0;
+    --green: #00e5a0;
+    --blue: #38bdf8;
+    --muted: #94a3b8;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: var(--bg);
+    color: var(--text);
+    transition: .4s;
+}
+
+body.light {
+    --bg: #edf2f7;
+    --card: #ffffff;
+    --text: #172033;
+    --muted: #536174;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 8%;
+    border-bottom: 1px solid #263449;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 10;
+}
+
+.logo {
+    font-size: 22px;
+    color: var(--green);
+    font-weight: bold;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 13px;
+}
+
+nav a:hover {
+    color: var(--green);
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+.theme {
+    background: var(--card);
+    color: var(--green);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+section {
+    padding: 90px 10%;
+}
+
+.hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.tag {
+    color: var(--green);
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(35px, 6vw, 65px);
+    margin-bottom: 15px;
+}
+
+.hero h1 span {
+    color: var(--green);
+}
+
+.hero p {
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 550px;
+}
+
+.typing {
+    color: var(--blue);
+    margin: 15px 0;
+    min-height: 25px;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--green);
+    color: #07131b;
+    padding: 14px 22px;
+    border-radius: 6px;
+    margin-top: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 5px 25px #00e5a055;
+}
+
+.code-box {
+    background: var(--card);
+    padding: 25px;
+    border: 1px solid #263449;
+    border-radius: 12px;
+    width: 420px;
+    max-width: 100%;
+    box-shadow: 0 10px 40px #0005;
+    overflow: hidden;
+}
+
+.dots {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 20px;
+}
+
+.dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+}
+
+.red { background: #ff5f57; }
+.yellow { background: #febc2e; }
+.green { background: #28c840; }
+
+pre {
+    color: var(--green);
+    line-height: 1.8;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+h2 {
+    font-size: 32px;
+    margin-bottom: 35px;
+}
+
+h2 span {
+    color: var(--green);
+}
+
+.about {
+    background: var(--card);
+    border-radius: 15px;
+    padding: 30px;
+    line-height: 1.9;
+    color: var(--muted);
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--card);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #263449;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    border-color: var(--green);
+}
+
+.card h3 {
+    color: var(--green);
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.progress {
+    height: 8px;
+    background: #263449;
+    border-radius: 10px;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.progress div {
+    height: 100%;
+    background: var(--green);
+    border-radius: 10px;
+}
+
+.terminal {
+    background: #050b14;
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid #263449;
+}
+
+.terminal h3 {
+    color: var(--green);
+    margin-bottom: 15px;
+}
+
+.terminal p {
+    color: #94a3b8;
+    margin-bottom: 12px;
+}
+
+.terminal input {
+    width: 100%;
+    padding: 14px;
+    background: #111c30;
+    border: 1px solid #263449;
+    color: var(--green);
+    outline: none;
+    font-family: inherit;
+    border-radius: 5px;
+}
+
+#output {
+    color: var(--green);
+    margin-top: 20px;
+    line-height: 1.8;
+    min-height: 50px;
+}
+
+footer {
+    text-align: center;
+    padding: 35px;
+    color: var(--muted);
+    border-top: 1px solid #263449;
+}
+
+footer span {
+    color: var(--green);
+}
+
+.clock {
+    color: var(--green);
+    font-size: 13px;
+}
+
+@media(max-width: 800px) {
+    header {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    nav {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 0;
+    }
+
+    .hero {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 65px;
+    }
+
+    .code-box {
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">&lt;Arthur.dev /&gt;</div>
+
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#terminal">Terminal</a>
+    </nav>
+
+    <button class="theme" onclick="mudarTema()">☀️ / 🌙</button>
+</header>
+
+<!-- INÍCIO -->
+<section class="hero" id="inicio">
+
+    <div>
+        <div class="tag">// Bem-vindo ao meu portfólio</div>
+
+        <h1>Olá, eu sou <span>Arthur!</span></h1>
+
+        <div class="typing" id="typing"></div>
+
+        <p>
+            Sou estudante de programação e estou iniciando
+            minha jornada no universo da tecnologia.
+            Atualmente estou aprendendo Python e desenvolvendo
+            minhas primeiras habilidades como programador.
+        </p>
+
+        <a href="#sobre" class="btn">Conheça minha história →</a>
+    </div>
+
+    <div class="code-box">
+        <div class="dots">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+        </div>
+
+<pre>
+<span style="color:#38bdf8">class</span> Desenvolvedor:
+
+    nome = "Arthur"
+    linguagem = "Python"
+    nivel = 1
+
+    <span style="color:#38bdf8">def</span> estudar(self):
+        <span style="color:#38bdf8">return</span> "Aprendendo!"
+
+    <span style="color:#38bdf8">def</span> objetivo(self):
+        <span style="color:#38bdf8">return</span> "Ser Dev 🚀"
+
+arthur = Desenvolvedor()
+</pre>
+    </div>
+
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+
+    <h2>01. <span>Sobre mim</span></h2>
+
+    <div class="about">
+        <p>
+            Meu nome é Arthur e sou estudante de programação
+            nível 1. Estou dando meus primeiros passos no mundo
+            da tecnologia, aprendendo lógica de programação
+            e desenvolvendo meus conhecimentos em Python.
+        </p>
+
+        <br>
+
+        <p>
+            Acredito que cada linha de código é uma oportunidade
+            de aprender algo novo. Meu objetivo é evoluir
+            constantemente, criar projetos e me tornar um
+            desenvolvedor cada vez melhor.
+        </p>
+
+        <br>
+
+        <p style="color:var(--green)">
+            >>> Status: Sempre aprendendo...
+        </p>
+    </div>
+
+</section>
+
+<!-- HABILIDADES -->
+<section id="habilidades">
+
+    <h2>02. <span>Minhas habilidades</span></h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>🐍 Python</h3>
+            <p>Estudando os fundamentos da linguagem Python.</p>
+            <div class="progress">
+                <div style="width:25%"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🧠 Lógica</h3>
+            <p>Aprendendo algoritmos, variáveis e estruturas condicionais.</p>
+            <div class="progress">
+                <div style="width:30%"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🌐 HTML</h3>
+            <p>Conhecendo a estrutura e os elementos das páginas web.</p>
+            <div class="progress">
+                <div style="width:35%"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>⚡ JavaScript</h3>
+            <p>Explorando interatividade e funcionalidades para sites.</p>
+            <div class="progress">
+                <div style="width:15%"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <p style="color:var(--muted); margin-top:20px">
+        * Os níveis são ilustrativos e representam meu estágio inicial de aprendizado.
+    </p>
+
+</section>
+
+<!-- PROJETOS -->
+<section id="projetos">
+
+    <h2>03. <span>Meus projetos</span></h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>📟 Calculadora</h3>
+            <p>Projeto para praticar operações matemáticas e lógica de programação.</p>
+            <br>
+            <span style="color:var(--green)">Status: Em desenvolvimento</span>
+        </div>
+
+        <div class="card">
+            <h3>🎮 Jogo de adivinhação</h3>
+            <p>Um jogo simples utilizando números aleatórios e estruturas condicionais.</p>
+            <br>
+            <span style="color:var(--green)">Status: Em desenvolvimento</span>
+        </div>
+
+        <div class="card">
+            <h3>💻 Portfólio pessoal</h3>
+            <p>Minha primeira página pessoal para apresentar minha evolução na programação.</p>
+            <br>
+            <span style="color:var(--green)">Status: Concluído</span>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- TERMINAL -->
+<section id="terminal">
+
+    <h2>04. <span>Terminal interativo</span></h2>
+
+    <div class="terminal">
+
+        <h3>Arthur@dev:~$ Terminal</h3>
+
+        <p>Digite um comando para conhecer mais sobre mim.</p>
+
+        <p>Comandos: help, sobre, skills, objetivo, contato</p>
+
+        <input
+            type="text"
+            id="command"
+            placeholder="Digite um comando e pressione Enter..."
+            onkeydown="executar(event)"
+        >
+
+        <div id="output">
+            Aguardando comando...
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <p>
+        Desenvolvido por <span>Arthur</span> 💚
+    </p>
+
+    <p style="margin-top:10px">
+        © <span id="year"></span> | Construindo meu futuro através do código.
+    </p>
+
+    <p class="clock" id="clock" style="margin-top:15px"></p>
+
+</footer>
+
+<script>
+
+// EFEITO DE DIGITAÇÃO
+const frases = [
+    "Estudante de Python 🐍",
+    "Futuro Desenvolvedor 🚀",
+    "Apaixonado por tecnologia 💻",
+    "Sempre aprendendo algo novo!"
+];
+
+let fraseIndex = 0;
+let letraIndex = 0;
+
+function digitar() {
+
+    const elemento = document.getElementById("typing");
+
+    if (letraIndex < frases[fraseIndex].length) {
+
+        elemento.textContent += frases[fraseIndex].charAt(letraIndex);
+        letraIndex++;
+
+        setTimeout(digitar, 80);
+
+    } else {
+
+        setTimeout(apagar, 1800);
+
+    }
+}
+
+function apagar() {
+
+    const elemento = document.getElementById("typing");
+
+    if (elemento.textContent.length > 0) {
+
+        elemento.textContent =
+            elemento.textContent.slice(0, -1);
+
+        setTimeout(apagar, 40);
+
+    } else {
+
+        fraseIndex = (fraseIndex + 1) % frases.length;
+        letraIndex = 0;
+
+        digitar();
+
+    }
+}
+
+digitar();
+
+
+// ALTERNAR TEMA
+function mudarTema() {
+
+    document.body.classList.toggle("light");
+
+}
+
+
+// TERMINAL INTERATIVO
+function executar(event) {
+
+    if (event.key === "Enter") {
+
+        const input = document.getElementById("command");
+        const output = document.getElementById("output");
+
+        const comando = input.value.toLowerCase().trim();
+
+        const comandos = {
+
+            help: "Comandos disponíveis: sobre, skills, objetivo, contato",
+
+            sobre: "Olá! Sou Arthur, estudante de programação nível 1.",
+
+            skills: "Estou aprendendo Python, lógica de programação, HTML e JavaScript.",
+
+            objetivo: "Meu objetivo é evoluir na programação e me tornar um desenvolvedor profissional!",
+
+            contato: "Obrigado por visitar meu portfólio! Em breve adicionarei meus contatos.",
+
+        };
+
+        if (comando === "") {
+            output.textContent = "Digite algum comando!";
+        }
+
+        else if (comandos[comando]) {
+            output.textContent = "> " + comandos[comando];
+        }
+
+        else {
+            output.textContent = "> Comando não encontrado. Digite help.";
+        }
+
+        input.value = "";
+
+    }
+
+}
+
+
+// RELÓGIO DIGITAL
+function atualizarRelogio() {
+
+    const agora = new Date();
+
+    document.getElementById("clock").textContent =
+        "Horário atual: " + agora.toLocaleTimeString("pt-BR");
+
+}
+
+setInterval(atualizarRelogio, 1000);
+atualizarRelogio();
+
+
+// ANO AUTOMÁTICO
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
